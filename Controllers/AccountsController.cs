@@ -29,7 +29,7 @@ public class AccountsController : ControllerBase
     }
 
     [HttpPut]
-    public ActionResult<BankAccountResponse> Update(BankAccountUpdateRequest request)
+    public ActionResult<BankAccountResponse> Update(BankAccountRequest request)
     {
         throw new NotImplementedException();
     }
