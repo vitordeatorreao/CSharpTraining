@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using BankApi.Models;
 
 namespace BankApi.Controllers;
 
@@ -7,10 +8,12 @@ namespace BankApi.Controllers;
 public class AccountsController : ControllerBase
 {
     private readonly ILogger<AccountsController> _logger;
+    private readonly IAccountDALAsync _accountDAO;
 
-    public AccountsController(ILogger<AccountsController> logger)
+    public AccountsController(ILogger<AccountsController> logger, IAccountDALAsync accountDAO)
     {
         _logger = logger;
+        _accountDAO = accountDAO;
     }
 
     [HttpPost]
