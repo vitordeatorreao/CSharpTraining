@@ -8,12 +8,12 @@ namespace BankApi.Controllers;
 public class AccountsController : ControllerBase
 {
     private readonly ILogger<AccountsController> _logger;
-    private readonly IAccountDALAsync _accountDAO;
+    private readonly IAccountDAL _accountDAL;
 
-    public AccountsController(ILogger<AccountsController> logger, IAccountDALAsync accountDAO)
+    public AccountsController(ILogger<AccountsController> logger, IAccountDAL accountDAL)
     {
         _logger = logger;
-        _accountDAO = accountDAO;
+        _accountDAL = accountDAL;
     }
 
     [HttpPost]

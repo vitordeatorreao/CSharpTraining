@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<IAccountDALAsync, AccountDAOAsync>(opt =>
+builder.Services.AddDbContext<IAccountDAL, AccountDAO>(opt =>
     opt.UseInMemoryDatabase("AccountList"));
 
 var app = builder.Build();
