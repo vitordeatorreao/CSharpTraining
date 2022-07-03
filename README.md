@@ -13,10 +13,10 @@ the Database is outside the scope of this tutorial, so we will be using an InMem
 Entity Framework.
 
 In summary, here's the software you will need to follow along with this hands on:
-- Git;
-- .NET 6 SDK;
-- VS Code;
-- C# Extension for VS Code.
+- [Git](https://git-scm.com/download);
+- [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0);
+- [Visual Studio Code](https://code.visualstudio.com/download);
+- [C# Extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
 ### Exercise 1
 
