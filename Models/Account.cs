@@ -8,8 +8,6 @@ namespace BankApi.Models
 
         public string? OwnerName { get; set; }
 
-        public bool IsOpen { get; set; }
-
         public DateTime OpenedAt { get; set; }
 
         public DateTime ClosedAt { get; set; }

@@ -56,7 +56,6 @@ namespace BankApi.Models
             
             dbAccount.Name = account.Name;
             dbAccount.OwnerName = account.OwnerName;
-            dbAccount.IsOpen = account.IsOpen;
             dbAccount.OpenedAt = account.OpenedAt;
             dbAccount.ClosedAt = account.ClosedAt;
             dbAccount.Balance = account.Balance;
