@@ -50,12 +50,12 @@ operation:
  neither, depending on whether or not a value different than `""` is present in the request. We
  should NOT be able to change the `CanGoNegative` property from the Update action. First, you
  should fetch the Account as it exists currently in the database using the DAL. If no Account is
- found, you should return HTTP 404 (NotFound) just like you did in the Read action. If it exists,
+ found, you should return HTTP 404 (Not Found) just like you did in the Read action. If it exists,
  you should alter the name, owner name or both and save it to the database using the DAL;
  * **Delete:** should receive an ID and delete its corresponding Account from the Database. When
  you call `IAccountDAL.DeleteById` it will either return the `Account` object which was deleted, or
  it will throw a `AccountNotFoundException`. You should catch that Exception and return HTTP 404
- (NotFound) in that case;
+ (Not Found) in that case;
  * **List:** to complete our little API, we will have an action which lists our Accounts. Remember
  to use [`yield return`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/yield).
 
@@ -123,9 +123,13 @@ for the `TransfersController` class and a new `./DTOs` file for the request obje
 
 The only logic involved here is that you should not allow Accounts where `canGoNegative` is `false`
 to have a Balance below zero. If a Transfer would create such situation, it should fail with a
-HTTP status 400 (BadRequest). Bonus points if you can provide a message to the API client saying
-the source account has no funds. You should also return HTTP status 404 (NotFound) in case the id
+HTTP status 400 (Bad Request). Bonus points if you can provide a message to the API client saying
+the source account has no funds. You should also return HTTP status 404 (Not Found) in case the id
 of one of the accounts is not found in the database.
+
+If the Transfer is successful, the client should receive an HTTP status 200 (Ok). I leave to you to
+decide what should be the content of the response. Just remember that in case you leave it empty,
+you should return HTTP status 204 (No Content).
 
 As for previous exercises, you can check the suggested answer in the `exerc3` branch in this
 repository.
