@@ -10,7 +10,7 @@ namespace BankApi.Models
 
         public DateTime OpenedAt { get; set; }
 
-        public DateTime ClosedAt { get; set; }
+        public bool CanGoNegative { get; set; }
 
         public decimal Balance { get; set; }
     }

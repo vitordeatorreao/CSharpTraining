@@ -57,7 +57,7 @@ namespace BankApi.Models
             dbAccount.Name = account.Name;
             dbAccount.OwnerName = account.OwnerName;
             dbAccount.OpenedAt = account.OpenedAt;
-            dbAccount.ClosedAt = account.ClosedAt;
+            dbAccount.CanGoNegative = account.CanGoNegative;
             dbAccount.Balance = account.Balance;
 
             try
