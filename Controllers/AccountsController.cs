@@ -38,7 +38,7 @@ public class AccountsController : ControllerBase
             // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/nameof
             nameof(Read),
             new { id = account.Id },
-            ToResponse(account));
+            account.ToResponse());
     }
 
     [HttpGet("{id}")]
@@ -46,7 +46,7 @@ public class AccountsController : ControllerBase
     {
         var account = await _accountDAL.ReadById(id);
         if (account == null) return NotFound();
-        return ToResponse(account);
+        return account.ToResponse();
     }
 
     [HttpPut("{id}")]
@@ -57,7 +57,7 @@ public class AccountsController : ControllerBase
         if (!string.IsNullOrWhiteSpace(request.Name)) account.Name = request.Name;
         if (!string.IsNullOrWhiteSpace(request.OwnerName)) account.OwnerName = request.OwnerName;
         var updatedAccount = await _accountDAL.Update(account);
-        return ToResponse(updatedAccount);
+        return updatedAccount.ToResponse();
     }
 
     [HttpDelete("{id}")]
@@ -66,7 +66,7 @@ public class AccountsController : ControllerBase
         try
         {
             var deletedAccount = await _accountDAL.DeleteById(id);
-            return ToResponse(deletedAccount);
+            return deletedAccount.ToResponse();
         }
         catch (AccountNotFoundException)
         {
@@ -79,21 +79,8 @@ public class AccountsController : ControllerBase
     {
         foreach (var account in await _accountDAL.List())
         {
-            yield return ToResponse(account);
+            yield return account.ToResponse();
         }
-    }
-
-    private BankAccountResponse ToResponse(Account account)
-    {
-        return new BankAccountResponse
-        {
-            Id = account.Id,
-            Name = account.Name,
-            OwnerName = account.OwnerName,
-            OpenedAt = account.OpenedAt,
-            CanGoNegative = account.CanGoNegative,
-            Balance = account.Balance,
-        };
     }
 
     private ActionResult<BankAccountResponse>? ValidateRequest(BankAccountRequest request)
