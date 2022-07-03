@@ -92,10 +92,12 @@ In `./Controllers/AccountsController.cs`:
 ```
 
 Finally, you will have to change your Action methods to return `Task<ActionResult<...>>`, instead
-of `ActionResult<...>`. And you will also have to adjust your calls to the DAL methods.
+of `ActionResult<...>`, and you will have to add the `async` modifier to the method. Also, you will
+have to adjust your calls to the DAL methods, as you now need to `await` them. Don't forget to use
+`IAsyncEnumerable<...>` as return type for the `List()` action.
 
-The interface contract of the Controller should remain the same. When testing, you should see no
-difference in the behavior of your requests and responses.
+Other than that, the interface contract of the Controller should remain the same. When testing, you
+should see no difference in the behavior of your requests and responses.
 
 You can check the `exerc2` branch in this repository for my suggested answer.
 
