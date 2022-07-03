@@ -41,7 +41,7 @@ public class AccountsController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<BankAccountResponse>> List()
+    public IEnumerable<BankAccountResponse> List()
     {
         throw new NotImplementedException();
     }
