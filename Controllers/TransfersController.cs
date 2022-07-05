@@ -19,6 +19,12 @@ public class TransfersController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<TransferResponse>> TransferFunds(TransferRequest request)
     {
+        // There is a concurrency problem with this solution. We are reading the balance
+        // and then updating it. Another concurrent request may be reading and updating
+        // the same balances at the same time, which may lead to inconsistencies. We could
+        // fix this using a database transaction, but that is outside the scope of this
+        // training. To make things simpler, we will ignore this problem. In real world
+        // applications, though, this could be devastating.
         if (request.Amount <= 0)
         {
             return BadRequest();
