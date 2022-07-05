@@ -18,6 +18,59 @@ In summary, here's the software you will need to follow along with this hands on
 - [Visual Studio Code](https://code.visualstudio.com/download);
 - [C# Extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
+## Building and running
+
+To run our application, you can open this folder in Visual Studio Code and select on the menu:
+"Run", then "Run Without Debugging". It will start the server, which will listen to a port on your
+machine. See the output in the console to check what port it was. In my case, it was port `7025`.
+
+You can execute the following requests using cURL:
+
+To list all accounts:
+
+```
+curl --insecure --location --request GET 'https://localhost:7025/api/accounts'
+```
+
+To create a new account:
+
+```
+curl --insecure --location --request POST 'https://localhost:7025/api/accounts' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "deposits",
+    "ownerName": "bank",
+    "canGoNegative": true
+}'
+```
+
+In the response you should see the generated ID. So grab that and use in the subsequent requests.
+In my case, it generated the guid: `0f5a15ce-be43-4368-a2c9-2c5bfdf90ccf`. So to update the
+account we would run, for example:
+
+```
+curl --insecure --location --request PUT 'https://localhost:7025/api/accounts/0f5a15ce-be43-4368-a2c9-2c5bfdf90ccf' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "DEPOSITS",
+    "ownerName": "BANK"
+}'
+```
+
+To get that account by its ID:
+
+```
+curl --insecure --location --request GET 'https://localhost:7025/api/accounts/0f5a15ce-be43-4368-a2c9-2c5bfdf90ccf'
+```
+
+Finally, to delete that same account:
+
+```
+curl --insecure --location --request DELETE 'https://localhost:7025/api/accounts/0f5a15ce-be43-4368-a2c9-2c5bfdf90ccf'
+```
+
+(You need to use `--insecure` because we are using HTTPS without a valid certicate)
+
 ### Exercise 1
 
 For exercise one, we will be implementing the AccountsController routes. The boilerplate code,
